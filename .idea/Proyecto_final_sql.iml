@@ -5,6 +5,5 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="ops4j.pax.jdbc.mysql" level="project" />
   </component>
 </module>
