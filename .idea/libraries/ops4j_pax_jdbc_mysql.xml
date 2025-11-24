@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="ops4j.pax.jdbc.mysql" type="repository">
+    <properties maven-id="org.ops4j.pax.jdbc:pax-jdbc-mysql:1.4.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/pax-jdbc-mysql-1.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/pax-jdbc-common-1.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/protobuf-java-3.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.6.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jcl-over-slf4j-1.6.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
