@@ -424,6 +424,11 @@ SELECT COUNT(*) FROM Cliente;
 
 ---
 
+## Guía de Ejecución
+Tambien hay una guía de Ejecución [En este link](GuiaEjecucion.md)
+
+---
+
 ## Pruebas y Casos de Uso
 
 ### Caso de Uso 1: Consulta de Ventas Diarias
