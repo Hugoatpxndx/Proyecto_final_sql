@@ -110,10 +110,10 @@ public class Procedimientos {
     }
     
     /**
-     * PUNTO 4: Ejecuta el procedimiento sp_InsertarCliente con validación
+     * PUNTO 4: Insertar cliente con validación de email único (usando query directo)
      * @param scanner Scanner para leer entrada del usuario
      */
-    public static void ejecutarInsertarCliente(Scanner scanner) {
+ public static void ejecutarInsertarCliente(Scanner scanner) {
         System.out.println("\n╔════════════════════════════════════════════════════════╗");
         System.out.println("║   INSERTAR CLIENTE CON VALIDACIÓN (Punto 4)         ║");
         System.out.println("╚════════════════════════════════════════════════════════╝");
@@ -137,33 +137,113 @@ public class Procedimientos {
         String direccion = scanner.nextLine();
         
         Connection conn = null;
-        CallableStatement cstmt = null;
+        PreparedStatement pstmtCheck = null;
+        PreparedStatement pstmtInsert = null;
         ResultSet rs = null;
         
         try {
             conn = DatabaseConnection.getConnection();
-            cstmt = conn.prepareCall("{CALL sp_InsertarCliente(?, ?, ?, ?, ?, ?)}");
-            cstmt.setString(1, clienteID);
-            cstmt.setString(2, nombre);
-            cstmt.setString(3, apellido);
-            cstmt.setString(4, email);
-            cstmt.setString(5, telefono);
-            cstmt.setString(6, direccion);
             
-            boolean hasResults = cstmt.execute();
+            // Validaciones previas
+            if (email == null || email.trim().isEmpty()) {
+                System.out.println("\n ERROR: El correo electrónico es obligatorio.");
+                return;
+            }
             
-            System.out.println("\n--- Resultado del Procedimiento ---");
+            if (clienteID == null || clienteID.trim().isEmpty()) {
+                System.out.println("\n ERROR: El ID del cliente es obligatorio.");
+                return;
+            }
             
-            while (hasResults) {
-                rs = cstmt.getResultSet();
-                Utilidades.imprimirResultSet(rs);
-                hasResults = cstmt.getMoreResults();
+            // Verificar si el email ya existe
+            String sqlCheck = "SELECT COUNT(*) FROM Cliente WHERE Email = ?";
+            pstmtCheck = conn.prepareStatement(sqlCheck);
+            pstmtCheck.setString(1, email);
+            rs = pstmtCheck.executeQuery();
+            
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("\n ERROR: El correo electrónico '" + email + 
+                    "' ya existe en la base de datos.");
+                System.out.println("   No se pueden registrar dos clientes con el mismo correo.");
+                return;
+            }
+            
+            // Verificar si el ClienteID ya existe
+            rs.close();
+            pstmtCheck.close();
+            sqlCheck = "SELECT COUNT(*) FROM Cliente WHERE ClienteID = ?";
+            pstmtCheck = conn.prepareStatement(sqlCheck);
+            pstmtCheck.setString(1, clienteID);
+            rs = pstmtCheck.executeQuery();
+            
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("\n ERROR: El ClienteID '" + clienteID + 
+                    "' ya existe en la base de datos.");
+                return;
+            }
+            
+            // Insertar el cliente
+            String sqlInsert = "INSERT INTO Cliente (ClienteID, Nombre, Apellido, Email, " +
+                              "Telefono, FechaRegistro, Direccion) " +
+                              "VALUES (?, ?, ?, ?, ?, CURDATE(), ?)";
+            
+            pstmtInsert = conn.prepareStatement(sqlInsert);
+            pstmtInsert.setString(1, clienteID);
+            pstmtInsert.setString(2, nombre);
+            pstmtInsert.setString(3, apellido);
+            pstmtInsert.setString(4, email);
+            pstmtInsert.setString(5, telefono);
+            pstmtInsert.setString(6, direccion);
+            
+            int rows = pstmtInsert.executeUpdate();
+            
+            if (rows > 0) {
+                System.out.println("\n✓ ÉXITO: Cliente '" + nombre + " " + apellido + 
+                    "' registrado exitosamente.");
+                System.out.println("  ClienteID: " + clienteID);
+                System.out.println("  Email: " + email);
+                System.out.println("  Fecha de Registro: " + java.time.LocalDate.now());
+                
+                // Mostrar el cliente insertado
+                System.out.println("\n--- Datos del Cliente Insertado ---");
+                String sqlSelect = "SELECT * FROM Cliente WHERE ClienteID = ?";
+                PreparedStatement pstmtSelect = conn.prepareStatement(sqlSelect);
+                pstmtSelect.setString(1, clienteID);
+                ResultSet rsCliente = pstmtSelect.executeQuery();
+                
+                if (rsCliente.next()) {
+                    System.out.println("ClienteID:      " + rsCliente.getString("ClienteID"));
+                    System.out.println("Nombre:         " + rsCliente.getString("Nombre") + " " + 
+                                     rsCliente.getString("Apellido"));
+                    System.out.println("Email:          " + rsCliente.getString("Email"));
+                    System.out.println("Teléfono:       " + rsCliente.getString("Telefono"));
+                    System.out.println("Dirección:      " + rsCliente.getString("Direccion"));
+                    System.out.println("Fecha Registro: " + rsCliente.getDate("FechaRegistro"));
+                }
+                
+                rsCliente.close();
+                pstmtSelect.close();
             }
             
         } catch (SQLException e) {
-            System.err.println(" Error: " + e.getMessage());
+            System.out.println("\n ERROR al insertar cliente: " + e.getMessage());
+            
+            // Manejo específico de errores comunes
+            if (e.getErrorCode() == 1062) { // Duplicate entry
+                System.out.println("   Código de Error: 1062 - Entrada duplicada");
+                System.out.println("   El email o ClienteID ya existe en el sistema.");
+            } else {
+                System.out.println("   Código de Error: " + e.getErrorCode());
+            }
         } finally {
-            DatabaseConnection.closeResources(conn, cstmt, rs);
+            try {
+                if (rs != null) rs.close();
+                if (pstmtCheck != null) pstmtCheck.close();
+                if (pstmtInsert != null) pstmtInsert.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
         }
     }
 }
