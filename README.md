@@ -202,21 +202,6 @@ CALL sp_VentasDiarias('2024-11-20');
 CALL sp_ClientesVigentesQ1(2024);
 ```
 
-### 3. sp_InsertarCliente
-**Propósito**: Insertar cliente con validación de email único
-
-**Características**:
-- Validación de campos obligatorios
-- Manejo de excepciones (TRY/CATCH)
-- Mensajes descriptivos de error
-- Verificación de email duplicado
-
-**Ejemplo de uso**:
-```sql
-CALL sp_InsertarCliente('CLI011', 'Pedro', 'Gómez', 
-                        'pedro@email.com', '8112223344', 'Dirección 123');
-```
-
 ---
 
 ## Triggers
