@@ -17,7 +17,7 @@ public class Triggers {
         System.out.println("║  INSERTAR INGREDIENTE - Activa Trigger (Punto 5)    ║");
         System.out.println("╚════════════════════════════════════════════════════════╝");
         
-        System.out.print("\nIngredienteID (ej: ING013): ");
+        System.out.print("\nIngredienteID (ej: I13): ");
         String ingID = scanner.nextLine();
         
         System.out.print("ProveedorID (ej: PRO1): ");

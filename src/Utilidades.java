@@ -29,7 +29,7 @@ public class Utilidades {
             imprimirResultSet(rs);
             
         } catch (SQLException e) {
-            System.err.println("❌ Error al ejecutar consulta: " + e.getMessage());
+            System.err.println(" Error al ejecutar consulta: " + e.getMessage());
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeResources(conn, stmt, rs);
@@ -112,8 +112,8 @@ public class Utilidades {
         if (DatabaseConnection.testConnection()) {
             System.out.println("✓ Sistema listo para usar.\n");
         } else {
-            System.out.println("❌ No se pudo conectar a la base de datos.");
-            System.out.println("   Verifique las credenciales en DatabaseConnection.java\n");
+            System.out.println(" No se pudo conectar a la base de datos.");
+            System.out.println("  Verifique las credenciales en DatabaseConnection.java\n");
         }
     }
     
@@ -180,7 +180,7 @@ public class Utilidades {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error al obtener estadísticas: " + e.getMessage());
+            System.err.println(" Error al obtener estadísticas: " + e.getMessage());
         } finally {
             DatabaseConnection.closeResources(conn, stmt, rs);
         }
