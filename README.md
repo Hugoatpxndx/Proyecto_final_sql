@@ -9,7 +9,8 @@
 6. [Triggers](#triggers)
 7. [Implementación JDBC](#implementación-jdbc)
 8. [Guía de Instalación](#guía-de-instalación)
-9. [Pruebas y Casos de Uso](#pruebas-y-casos-de-uso)
+9. [Guía de Ejecución](GuiaEjecucion.md)
+10. [Pruebas y Casos de Uso](#pruebas-y-casos-de-uso)
 
 ---
 
@@ -200,6 +201,21 @@ CALL sp_VentasDiarias('2024-11-20');
 **Ejemplo de uso**:
 ```sql
 CALL sp_ClientesVigentesQ1(2024);
+```
+
+### 3. sp_InsertarCliente
+**Propósito**: Insertar cliente con validación de email único
+
+**Características**:
+- Validación de campos obligatorios
+- Manejo de excepciones (TRY/CATCH)
+- Mensajes descriptivos de error
+- Verificación de email duplicado
+
+**Ejemplo de uso**:
+```sql
+CALL sp_InsertarCliente('CLI011', 'Pedro', 'Gómez', 
+                        'pedro@email.com', '8112223344', 'Dirección 123');
 ```
 
 ---
