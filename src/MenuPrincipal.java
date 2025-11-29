@@ -56,7 +56,7 @@ public class MenuPrincipal {
                     continuar = false;
                     break;
                 default:
-                    System.out.println("\n❌ Opción inválida. Por favor, intente nuevamente.");
+                    System.out.println("\n Opción inválida. Por favor, intente nuevamente.");
                     Utilidades.pausar(scanner);
             }
         }
@@ -71,17 +71,17 @@ public class MenuPrincipal {
         System.out.println("\n╔════════════════════════════════════════════════════════╗");
         System.out.println("║              MENÚ PRINCIPAL                          ║");
         System.out.println("╚════════════════════════════════════════════════════════╝");
-        System.out.println("\n📋 OPCIONES DISPONIBLES:");
-        System.out.println("\n  1. 📊 Consultas Avanzadas SQL (Punto 1)");
-        System.out.println("  2. 💰 Reporte de Ventas Diarias (Punto 2)");
-        System.out.println("  3. 👥 Reporte Clientes Vigentes Q1 (Punto 3)");
-        System.out.println("  4. ➕ Insertar Cliente con Validación (Punto 4)");
-        System.out.println("  5. ⚡ Probar Triggers (Puntos 5 y 6)");
-        System.out.println("  6. 🗑️  Eliminar Registro");
-        System.out.println("  7. 🔧 Operaciones CRUD");
-        System.out.println("  8. 📈 Ver Estadísticas del Sistema");
-        System.out.println("  0. ❌ Salir del Sistema");
-        System.out.print("\n▶️  Seleccione una opción [0-8]: ");
+        System.out.println("\n OPCIONES DISPONIBLES:");
+        System.out.println("\n  1. Consultas Avanzadas SQL (Punto 1)");
+        System.out.println("  2. Reporte de Ventas Diarias (Punto 2)");
+        System.out.println("  3. Reporte Clientes Vigentes Q1 (Punto 3)");
+        System.out.println("  4. Insertar Cliente con Validación (Punto 4)");
+        System.out.println("  5. Probar Triggers (Puntos 5 y 6)");
+        System.out.println("  6. Eliminar Registro");
+        System.out.println("  7. Operaciones CRUD");
+        System.out.println("  8. Ver Estadísticas del Sistema");
+        System.out.println("  0. Salir del Sistema");
+        System.out.print("\n▶ Seleccione una opción [0-8]: ");
     }
     
     /**
@@ -114,8 +114,8 @@ public class MenuPrincipal {
             System.out.println("  6. JOIN Múltiple - Detalle completo de pedidos");
             System.out.println("  7. Productos más vendidos");
             System.out.println("  8. Ventas por plataforma");
-            System.out.println("  0. ⬅️  Volver al menú principal");
-            System.out.print("\n▶️  Seleccione consulta [0-8]: ");
+            System.out.println("  0. ⬅ Volver al menú principal");
+            System.out.print("\n▶ Seleccione consulta [0-8]: ");
             
             int opcion = leerOpcion();
             
@@ -148,7 +148,7 @@ public class MenuPrincipal {
                     volver = true;
                     continue;
                 default:
-                    System.out.println("\n❌ Opción inválida.");
+                    System.out.println("\n Opción inválida.");
             }
             
             if (!volver) {
@@ -168,14 +168,14 @@ public class MenuPrincipal {
             System.out.println("║           PROBAR TRIGGERS (Puntos 5 y 6)            ║");
             System.out.println("╚════════════════════════════════════════════════════════╝");
             System.out.println("\n  PUNTO 5 - Control de Inventario:");
-            System.out.println("    1. 📦 Insertar ingrediente (activa trigger)");
-            System.out.println("    2. 📦 Actualizar stock (activa trigger y alerta)");
-            System.out.println("    3. 📋 Ver Log de Inventario");
+            System.out.println("    1. Insertar ingrediente (activa trigger)");
+            System.out.println("    2. Actualizar stock (activa trigger y alerta)");
+            System.out.println("    3. Ver Log de Inventario");
             System.out.println("\n  PUNTO 6 - Seguimiento de Clientes:");
-            System.out.println("    4. 🛍️  Insertar pedido online (activa trigger)");
-            System.out.println("    5. 📋 Ver Seguimiento de Clientes Online");
-            System.out.println("\n  0. ⬅️  Volver al menú principal");
-            System.out.print("\n▶️  Seleccione opción [0-5]: ");
+            System.out.println("    4. Insertar pedido online (activa trigger)");
+            System.out.println("    5. Ver Seguimiento de Clientes Online");
+            System.out.println("\n  0. Volver al menú principal");
+            System.out.print("\n▶ Seleccione opción [0-5]: ");
             
             int opcion = leerOpcion();
             
@@ -199,7 +199,7 @@ public class MenuPrincipal {
                     volver = true;
                     continue;
                 default:
-                    System.out.println("\n❌ Opción inválida.");
+                    System.out.println("\n Opción inválida.");
             }
             
             if (!volver) {
@@ -218,12 +218,12 @@ public class MenuPrincipal {
             System.out.println("\n╔════════════════════════════════════════════════════════╗");
             System.out.println("║            OPERACIONES CRUD                          ║");
             System.out.println("╚════════════════════════════════════════════════════════╝");
-            System.out.println("\n  1. ➕ CREATE - Crear nuevo producto");
-            System.out.println("  2. 📖 READ - Leer/Consultar productos");
-            System.out.println("  3. ✏️  UPDATE - Actualizar producto");
-            System.out.println("  4. 🗑️  DELETE - Eliminar producto");
-            System.out.println("  0. ⬅️  Volver al menú principal");
-            System.out.print("\n▶️  Seleccione operación [0-4]: ");
+            System.out.println("\n  1. CREATE - Crear nuevo producto");
+            System.out.println("  2. READ - Leer/Consultar productos");
+            System.out.println("  3. UPDATE - Actualizar producto");
+            System.out.println("  4. DELETE - Eliminar producto");
+            System.out.println("  0. Volver al menú principal");
+            System.out.print("\n▶ Seleccione operación [0-4]: ");
             
             int opcion = leerOpcion();
             
@@ -244,7 +244,7 @@ public class MenuPrincipal {
                     volver = true;
                     continue;
                 default:
-                    System.out.println("\n❌ Opción inválida.");
+                    System.out.println("\n Opción inválida.");
             }
             
             if (!volver) {

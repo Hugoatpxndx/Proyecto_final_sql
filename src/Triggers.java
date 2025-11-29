@@ -56,16 +56,16 @@ public class Triggers {
                 System.out.println("\n✓ Ingrediente insertado exitosamente.");
                 System.out.println("✓ Trigger 'trg_RegistrarInventario_Insert' activado.");
                 System.out.println("✓ Se registró en la tabla LogInventario.");
-                System.out.println("\n💡 Use la opción 'Ver Log de Inventario' para verificar.");
+                System.out.println("\n Use la opción 'Ver Log de Inventario' para verificar.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
             if (e.getMessage().contains("Duplicate entry")) {
                 System.err.println("   El ingrediente ya existe (Trigger de validación funcionando).");
             }
         } catch (NumberFormatException e) {
-            System.err.println("❌ Error: Stock o Costo deben ser números válidos.");
+            System.err.println(" Error: Stock o Costo deben ser números válidos.");
         } finally {
             DatabaseConnection.closeResources(conn, pstmt, null);
         }
@@ -105,19 +105,19 @@ public class Triggers {
                 
                 double stockNum = Double.parseDouble(stock);
                 if (stockNum < 10) {
-                    System.out.println("⚠️  ALERTA: Stock bajo detectado por el trigger!");
+                    System.out.println(" ALERTA: Stock bajo detectado por el trigger!");
                     System.out.println("✓ Se registró alerta en LogInventario.");
                 }
                 
-                System.out.println("\n💡 Use la opción 'Ver Log de Inventario' para verificar.");
+                System.out.println("\n Use la opción 'Ver Log de Inventario' para verificar.");
             } else {
-                System.out.println("❌ Ingrediente no encontrado.");
+                System.out.println(" Ingrediente no encontrado.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.err.println("❌ Error: El stock debe ser un número válido.");
+            System.err.println(" Error: El stock debe ser un número válido.");
         } finally {
             DatabaseConnection.closeResources(conn, pstmt, null);
         }
@@ -151,7 +151,7 @@ public class Triggers {
         try {
             plat = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("❌ Opción inválida.");
+            System.out.println(" Opción inválida.");
             return;
         }
         
@@ -161,7 +161,7 @@ public class Triggers {
             case 2: plataforma = "Uber Eats"; break;
             case 3: plataforma = "Didi Food"; break;
             default:
-                System.out.println("❌ Opción inválida.");
+                System.out.println(" Opción inválida.");
                 return;
         }
         
@@ -189,16 +189,16 @@ public class Triggers {
                 System.out.println("✓ Trigger 'trg_SeguimientoClientesOnline' activado.");
                 System.out.println("✓ Se creó registro de seguimiento automáticamente.");
                 System.out.println("✓ Plataforma: " + plataforma);
-                System.out.println("\n💡 Use la opción 'Ver Seguimiento Online' para verificar.");
+                System.out.println("\n Use la opción 'Ver Seguimiento Online' para verificar.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
             if (e.getMessage().contains("foreign key")) {
                 System.err.println("   Verifique que el ClienteID y EmpleadoID existan.");
             }
         } catch (NumberFormatException e) {
-            System.err.println("❌ Error: El total debe ser un número válido.");
+            System.err.println(" Error: El total debe ser un número válido.");
         } finally {
             DatabaseConnection.closeResources(conn, pstmt, null);
         }

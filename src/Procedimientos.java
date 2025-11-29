@@ -48,7 +48,7 @@ public class Procedimientos {
             System.out.println("\n✓ Procedimiento ejecutado exitosamente.");
             
         } catch (SQLException e) {
-            System.err.println("❌ Error al ejecutar procedimiento: " + e.getMessage());
+            System.err.println(" Error al ejecutar procedimiento: " + e.getMessage());
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeResources(conn, cstmt, rs);
@@ -98,14 +98,14 @@ public class Procedimientos {
                 System.out.println("\n✓ Procedimiento ejecutado exitosamente.");
                 
             } catch (SQLException e) {
-                System.err.println("❌ Error al ejecutar procedimiento: " + e.getMessage());
+                System.err.println(" Error al ejecutar procedimiento: " + e.getMessage());
                 e.printStackTrace();
             } finally {
                 DatabaseConnection.closeResources(conn, cstmt, rs);
             }
             
         } catch (NumberFormatException e) {
-            System.out.println("❌ Año inválido. Debe ser un número.");
+            System.out.println(" Año inválido. Debe ser un número.");
         }
     }
     
@@ -161,7 +161,7 @@ public class Procedimientos {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
         } finally {
             DatabaseConnection.closeResources(conn, cstmt, rs);
         }

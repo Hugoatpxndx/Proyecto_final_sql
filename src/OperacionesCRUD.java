@@ -56,14 +56,14 @@ public class OperacionesCRUD {
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
             if (e.getMessage().contains("Duplicate entry")) {
                 System.err.println("   El ProductoID ya existe.");
             } else if (e.getMessage().contains("foreign key")) {
                 System.err.println("   La MarcaID no existe en la tabla Marcas.");
             }
         } catch (NumberFormatException e) {
-            System.err.println("❌ Error: El precio debe ser un número válido.");
+            System.err.println(" Error: El precio debe ser un número válido.");
         } finally {
             DatabaseConnection.closeResources(conn, pstmt, null);
         }
@@ -79,13 +79,13 @@ public class OperacionesCRUD {
         System.out.println("╚════════════════════════════════════════════════════════╝");
         System.out.println("\n  1. Ver todos los productos");
         System.out.println("  2. Buscar producto por ID");
-        System.out.print("\n▶️  Seleccione opción: ");
+        System.out.print("\n▶ Seleccione opción: ");
         
         int opcion = -1;
         try {
             opcion = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("❌ Opción inválida.");
+            System.out.println(" Opción inválida.");
             return;
         }
         
@@ -129,16 +129,16 @@ public class OperacionesCRUD {
                     System.out.println("Descripción:  " + rs.getString("Descripcion"));
                     System.out.println("Precio Base:  $" + rs.getDouble("PrecioBase"));
                 } else {
-                    System.out.println("\n❌ Producto no encontrado.");
+                    System.out.println("\n Producto no encontrado.");
                 }
                 
             } catch (SQLException e) {
-                System.err.println("❌ Error: " + e.getMessage());
+                System.err.println(" Error: " + e.getMessage());
             } finally {
                 DatabaseConnection.closeResources(conn, pstmt, rs);
             }
         } else {
-            System.out.println("❌ Opción inválida.");
+            System.out.println(" Opción inválida.");
         }
     }
     
@@ -192,13 +192,13 @@ public class OperacionesCRUD {
                     System.out.println("  Nueva Descripción: " + descripcion);
                 }
             } else {
-                System.out.println("❌ Producto no encontrado.");
+                System.out.println(" Producto no encontrado.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.err.println("❌ Error: El precio debe ser un número válido.");
+            System.err.println(" Error: El precio debe ser un número válido.");
         } finally {
             DatabaseConnection.closeResources(conn, pstmt, null);
         }
@@ -261,11 +261,11 @@ public class OperacionesCRUD {
                     System.out.println("\nOperación cancelada.");
                 }
             } else {
-                System.out.println("\n❌ Producto no encontrado.");
+                System.out.println("\n Producto no encontrado.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
             if (e.getMessage().contains("foreign key")) {
                 System.err.println("   El producto no puede eliminarse porque está en pedidos o recetas.");
                 System.err.println("   Primero elimine las referencias en esas tablas.");
@@ -287,13 +287,13 @@ public class OperacionesCRUD {
         System.out.println("  2. Eliminar Ingrediente");
         System.out.println("  3. Eliminar Marca");
         System.out.println("  0. Volver");
-        System.out.print("\n▶️  Seleccione tabla: ");
+        System.out.print("\n Seleccione tabla: ");
         
         int opcion = -1;
         try {
             opcion = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("❌ Opción inválida.");
+            System.out.println(" Opción inválida.");
             return;
         }
         
@@ -327,7 +327,7 @@ public class OperacionesCRUD {
             case 0:
                 return;
             default:
-                System.out.println("❌ Opción inválida.");
+                System.out.println(" Opción inválida.");
                 return;
         }
         
@@ -345,11 +345,11 @@ public class OperacionesCRUD {
                 System.out.println("\n✓ " + tabla + " eliminado exitosamente.");
                 System.out.println("  " + campo + ": " + id);
             } else {
-                System.out.println("❌ " + tabla + " no encontrado.");
+                System.out.println( tabla + " no encontrado.");
             }
             
         } catch (SQLException e) {
-            System.err.println("❌ Error: " + e.getMessage());
+            System.err.println(" Error: " + e.getMessage());
             System.err.println("Posible causa: El registro tiene datos relacionados en otras tablas.");
             System.err.println("Debe eliminar primero las referencias antes de eliminar este registro.");
         } finally {

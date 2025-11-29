@@ -54,7 +54,7 @@ public class DatabaseConnection {
             System.out.println("✓ Conexión exitosa a la base de datos");
             return true;
         } catch (SQLException e) {
-            System.err.println("❌ Error de conexión: " + e.getMessage());
+            System.err.println(" Error de conexión: " + e.getMessage());
             return false;
         } finally {
             closeResources(conn, null, null);
